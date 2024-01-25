@@ -12,7 +12,7 @@ const Carousel({ Key? key }) : super(key: key);
               decoration: BoxDecoration( 
                 borderRadius: BorderRadius.circular(8.0), 
                 image: const DecorationImage( 
-                  image: AssetImage('images/shop_banner_1.webp'), 
+                  image: AssetImage('assets/images/shop_banner_1.webp'), 
                   fit: BoxFit.cover, 
                 ), 
               ), 
@@ -24,7 +24,7 @@ const Carousel({ Key? key }) : super(key: key);
               decoration: BoxDecoration( 
                 borderRadius: BorderRadius.circular(8.0), 
                 image: const DecorationImage( 
-                  image: AssetImage('images/project.jpg'), 
+                  image: AssetImage('assets/images/project.jpg'), 
                   fit: BoxFit.cover, 
                 ), 
               ), 
@@ -35,7 +35,7 @@ const Carousel({ Key? key }) : super(key: key);
               decoration: BoxDecoration( 
                 borderRadius: BorderRadius.circular(8.0), 
                 image: const DecorationImage( 
-                  image: AssetImage('images/shop_banner_1.webp'),
+                  image: AssetImage('assets/images/shop_banner_1.webp'),
                   fit: BoxFit.cover, 
                 ), 
               ), 
@@ -46,7 +46,7 @@ const Carousel({ Key? key }) : super(key: key);
               decoration: BoxDecoration( 
                 borderRadius: BorderRadius.circular(8.0), 
                 image: const DecorationImage( 
-                  image: AssetImage('images/shop_banner_1.webp'), 
+                  image: AssetImage('assets/images/shop_banner_1.webp'), 
                   fit: BoxFit.cover, 
                 ), 
               ), 

@@ -1,7 +1,7 @@
 
 
-import 'package:ecom_app/responsive/responsive_layout.dart';
-import 'package:ecom_app/views/shared/bottom_nav.dart';
+// import 'package:ecom_app/responsive/responsive_layout.dart';
+// import 'package:ecom_app/views/shared/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
 import 'navbar.dart';
@@ -22,9 +22,9 @@ class _CommonScreenState extends State<CommonScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Navbar(),
-        
+        automaticallyImplyLeading: false,
       ),
-      bottomNavigationBar: Responsive.isMobile(context)?const BottomNav():null,
+      // bottomNavigationBar: Responsive.isMobile(context)?const BottomNav():null,
       body:widget.body,
      
     );

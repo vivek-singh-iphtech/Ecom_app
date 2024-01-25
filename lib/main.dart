@@ -1,4 +1,7 @@
+import 'package:ecom_app/responsive/responsive_layout.dart';
 import 'package:ecom_app/views/screens/HomePage.dart';
+import 'package:ecom_app/views/shared/common_screen.dart';
+import 'package:ecom_app/views/shared/mobile_common_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'views/screens/ProductsPage.dart';
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
         '/products': (context) => const ProductsPage(),
         // Add more routes as needed
       },
-      home: const HomePage(),
+      home: Responsive.isDesktop(context)?CommonScreen(body: const HomePage()):MobileCommonScreen(),
     );
   }
 }

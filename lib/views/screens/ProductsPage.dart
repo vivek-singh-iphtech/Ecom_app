@@ -11,10 +11,9 @@ class ProductsPage extends StatefulWidget {
 class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
-    return CommonScreen(
-      body: Container(
+    return Container(
         child: Text('products'),
-      ),
-    );
+      );
+    
   }
 }

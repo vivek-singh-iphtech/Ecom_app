@@ -23,47 +23,50 @@ class _HomePageState extends State<HomePage> {
 
   // homepage for desktop
   Widget _desktopHomePage() {
-    return const SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(14.0),
-            child: Carousel(),
-          ),
-           Padding(
-            padding: EdgeInsets.all(14.0),
-            child: Categories(),
-          ),
-          Padding(
-            padding: EdgeInsets.all(14.0),
-            child: FeaturedProducts(),
-          ),
-          SizedBox(height: 16.0), // Add some space at the bottom
-        ],
+    return CommonScreen(
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Carousel(),
+            ),
+             Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Categories(),
+            ),
+            Padding(
+              padding: EdgeInsets.all(14.0),
+              child: FeaturedProducts(),
+            ),
+            SizedBox(height: 16.0), // Add some space at the bottom
+          ],
+        ),
       ),
     );
   }
 
   // homepage for mobile
   Widget _mobileHomePage() {
-    return const SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(14.0),
-            child: Carousel(),
-          ),
+     return  const SingleChildScrollView(
+        child: Column(
+          children: [
             Padding(
-            padding: EdgeInsets.all(14.0),
-            child: Categories(),
-          ),
-          Padding(
-            padding: EdgeInsets.all(14.0),
-            child: FeaturedProducts(),
-          ),
-          SizedBox(height: 16.0), // Add some space at the bottom
-        ],
-      ),
+              padding: EdgeInsets.all(14.0),
+              child: Carousel(),
+            ),
+             Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Categories(),
+            ),
+            Padding(
+              padding: EdgeInsets.all(14.0),
+              child: FeaturedProducts(),
+            ),
+            SizedBox(height: 16.0), // Add some space at the bottom
+          ],
+        ),
+     
     );
   }
 }

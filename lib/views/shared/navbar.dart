@@ -1,5 +1,6 @@
 import 'package:ecom_app/responsive/responsive_layout.dart';
 import 'package:ecom_app/views/shared/nav_item.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Navbar extends StatefulWidget {
@@ -44,6 +45,7 @@ class _NavbarState extends State<Navbar> {
   }
 
   //Navbar for mobile
+  
   Widget _mobileNavBar() {
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [

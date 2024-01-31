@@ -100,7 +100,16 @@ class _MobileCommonScreenState extends State<MobileCommonScreen> {
           children: [
             NavItem(title: wishlist, route: '',),
             const SizedBox(width: 8),
-            NavItem(title: Cart, route: '',),
+             IconButton(
+                        icon: const Icon(
+                          Icons.shopping_bag,
+                          color: Color.fromARGB(195, 0, 0, 0),
+                          size: 28,
+                        ),
+                        onPressed: () {
+                          navigateToCartPage();
+                        },
+             ),
           ],
         )
       ]),
@@ -108,5 +117,9 @@ class _MobileCommonScreenState extends State<MobileCommonScreen> {
       
 
     );
+  }
+  
+  void navigateToCartPage() {
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> const CartPage()));
   }
 }

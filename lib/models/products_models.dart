@@ -2,6 +2,7 @@ class Products {
   final int id;
   final String title;
   final double price;
+  int quantity;
   final String description;
   final String category;
   final String image;
@@ -11,6 +12,7 @@ class Products {
     required this.id,
     required this.title,
     required this.price,
+    required this.quantity,
     required this.description,
     required this.category,
     required this.image,
@@ -25,9 +27,11 @@ class Products {
       description: json['description'],
       category: json['category'],
       image: json['image'],
-      rating: Rating.fromJson(json['rating']),
+      rating: Rating.fromJson(json['rating']), quantity: 1,
     );
   }
+
+  void incrementQuantity() {}
 }
 
 class Rating {

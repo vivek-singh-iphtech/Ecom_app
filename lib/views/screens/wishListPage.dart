@@ -16,6 +16,15 @@ class WishListPage extends StatefulWidget {
 }
 
 class _WishListPageState extends State<WishListPage> {
+
+  
+  @override
+  void initState()
+  {
+    super.initState();
+    Provider.of<WishList>(context,listen: false).getCartToPreferences();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

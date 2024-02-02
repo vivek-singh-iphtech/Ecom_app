@@ -1,9 +1,11 @@
+import 'package:ecom_app/providers/cart_providers.dart';
+import 'package:ecom_app/providers/wishlist_providers.dart';
 import 'package:ecom_app/views/widgets/Homepage/carousel.dart';
 import 'package:ecom_app/views/widgets/Homepage/categories.dart';
 import 'package:ecom_app/views/widgets/Homepage/featured_products.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../../responsive/responsive_layout.dart';
 import '../shared/common_screen.dart';
 class HomePage extends StatefulWidget {
@@ -14,6 +16,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+   @override
+  void initState()
+  {
+    super.initState();
+    Provider.of<WishList>(context,listen: false).getCartToPreferences();
+    Provider.of<Cart>(context,listen: false).getCartToPreferences();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

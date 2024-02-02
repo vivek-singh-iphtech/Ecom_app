@@ -15,6 +15,14 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+
+
+  @override
+  void initState()
+  {
+    super.initState();
+    Provider.of<Cart>(context,listen: false).getCartToPreferences();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,30 +38,65 @@ class _CartPageState extends State<CartPage> {
       bottomNavigationBar:  ClipRRect(
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(50), topRight: Radius.circular(50)),
-          child: BottomAppBar(
-              color: Color.fromARGB(255, 255, 255, 255),
+          child: Consumer<Cart>(
+            builder: (context, cart, _) => BottomAppBar(
+              color: Color.fromARGB(255, 92, 119, 255),
+              height: 80.0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    // '\$${(product?.price ?? 0) * (product?.quantity ?? 0)}',
-                    '0000000',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 24,
+                     Padding(
+                       padding: const EdgeInsets.only(left: 20.0),
+                       child: Text(
+                              'Total: \$${cart.calculateTotalPrice().toStringAsFixed(2) ?? '0.00'}',
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 255, 255, 255), // Customize the color of the price
+                              ),
+                            ),
+                     ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: Container(
+                      height: 33.0,
+                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                    
+                                          color: Color.fromARGB(255, 255, 255, 255),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(
+                                                  0.5), // Shadow color
+                                              spreadRadius: 2,
+                                              blurRadius: 5,
+                                              offset:
+                                                  Offset(0, 3), // Shadow offset
+                                            ),
+                                          ],
+                                        ),
+                      child: TextButton(
+                      
+                        child: const Center(
+                          child: Text(
+                            'Check out',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                         
+                        },
+                      ),
                     ),
                   ),
-                  Spacer(),
-                  ElevatedButton(
-                    onPressed:(){
-                      
-                    }, 
-                    child: Container(
-                      child: Text('check Out')
-                    ) )
                 ],
-              ))),
+              ),
+            ),
+          ),
+        ),
       body: Responsive(mobile: _mobileCartPage(), desktop: _desktopCartPage()),
     );
   }
@@ -109,8 +152,7 @@ class _CartPageState extends State<CartPage> {
                                             product?.title ?? 'test1', 2),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color:
-                                              Color.fromARGB(255, 62, 72, 165),
+                                          color: Color.fromARGB(255, 92, 119, 255),
                                           fontSize: 18,
                                         ),
                                       ),
@@ -119,7 +161,7 @@ class _CartPageState extends State<CartPage> {
                                       '\$${(product?.price ?? 0) * (product?.quantity ?? 0)}',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(255, 62, 72, 165),
+                                        color: Color.fromARGB(255, 92, 119, 255),
                                         fontSize: 16,
                                       ),
                                     ),
@@ -159,6 +201,7 @@ class _CartPageState extends State<CartPage> {
                                             Provider.of<Cart>(context,
                                                     listen: false)
                                                 .decrementQuantity(product);
+                                           
                                           }
                                         },
                                         color: Colors.black, // Icon color
@@ -202,6 +245,7 @@ class _CartPageState extends State<CartPage> {
                                           Provider.of<Cart>(context,
                                                   listen: false)
                                               .incrementQuantity(product);
+                                              
                                         },
                                       ),
                                     ),
@@ -338,4 +382,5 @@ class _CartPageState extends State<CartPage> {
       return titleWords.sublist(0, words).join(' ');
     }
   }
+  
 }

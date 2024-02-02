@@ -19,6 +19,19 @@ class Products {
     required this.rating,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'price': price,
+      'quantity': quantity,
+      'image': image,
+      'description':description,
+      'category':category,
+      'rating':rating.toJson(),
+    };
+  }
+
   factory Products.fromJson(Map<String, dynamic> json) {
     return Products(
       id: json['id'],
@@ -27,7 +40,7 @@ class Products {
       description: json['description'],
       category: json['category'],
       image: json['image'],
-      rating: Rating.fromJson(json['rating']), quantity: 1,
+      rating: Rating.fromJson(json['rating']), quantity: json['quantity'] ?? 1,
     );
   }
 
@@ -42,6 +55,13 @@ class Rating {
     required this.rate,
     required this.count,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'rate':rate,
+      'count':count,
+    };
+  }
 
   factory Rating.fromJson(Map<String, dynamic> json) {
     return Rating(

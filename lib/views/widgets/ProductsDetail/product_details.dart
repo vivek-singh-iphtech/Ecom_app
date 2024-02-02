@@ -15,6 +15,15 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   final String addToCart = 'Add To Cart';
   final String removeFromCart = 'Remove From Cart';
+
+
+   @override
+  void initState()
+  {
+    super.initState();
+    Provider.of<Cart>(context,listen: false).getCartToPreferences();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +37,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               topLeft: Radius.circular(50), topRight: Radius.circular(50)),
           child: Consumer<Cart>(
             builder: (context, cart, _) => BottomAppBar(
-              color: Color.fromARGB(255, 62, 72, 165),
+             color: Color.fromARGB(255, 92, 119, 255),
               height: 80.0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,7 +77,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                       
                         child: Center(
                           child: Text(
-                            cart.isCart(widget.data?.id) ? removeFromCart : addToCart,
+                            cart.isCart(widget.data?.id) ?
+                             removeFromCart  : 
+                             addToCart,
                             style: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                             ),
@@ -124,7 +135,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         borderRadius:
                                             BorderRadius.circular(15.0),
 
-                                        color: Color.fromARGB(255, 62, 72, 165),
+                                        color: Color.fromARGB(255, 92, 119, 255),
                                         boxShadow: [
                                           BoxShadow(
                                             color: Colors.grey.withOpacity(
@@ -159,7 +170,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     widget.data?.title ?? 'test1',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 62, 72, 165),
+                                      color: Color.fromARGB(255, 92, 119, 255),
                                       fontSize: 19,
                                     ),
                                   ),

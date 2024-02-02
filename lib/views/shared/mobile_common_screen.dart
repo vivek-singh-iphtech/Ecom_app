@@ -1,13 +1,16 @@
+import 'package:ecom_app/providers/cart_providers.dart';
 import 'package:ecom_app/views/screens/CartPage.dart';
 import 'package:ecom_app/views/screens/HomePage.dart';
 import 'package:ecom_app/views/screens/ProductsPage.dart';
 import 'package:ecom_app/views/screens/wishListPage.dart';
-import 'package:ecom_app/views/shared/common_screen.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'nav_item.dart';
-import 'navbar.dart';
+import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
+
 
 class MobileCommonScreen extends StatefulWidget {
   MobileCommonScreen({Key? key}) : super(key: key);
@@ -19,7 +22,6 @@ class MobileCommonScreen extends StatefulWidget {
 class _MobileCommonScreenState extends State<MobileCommonScreen> {
   final PageController _pageController = PageController();
  final String wishlist = 'wishlist';
-  final String Cart = 'Cart';
   int _currentIndex = 0;
 
   @override
@@ -100,16 +102,25 @@ class _MobileCommonScreenState extends State<MobileCommonScreen> {
           children: [
             NavItem(title: wishlist, route: '',),
             const SizedBox(width: 8),
-             IconButton(
-                        icon: const Icon(
-                          Icons.shopping_bag,
+             Consumer<Cart>(
+              builder: (context, cart, _) => badges.Badge(
+                    badgeContent: Text('${cart?.cartList.length}'),
+                    position: badges.BadgePosition.topEnd(top: -1, end: -1),
+                      badgeStyle: const badges.BadgeStyle(
+                        
+                        badgeColor: Color.fromARGB(255, 255, 180, 180),
+                      ),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.shopping_bag,
                           color: Color.fromARGB(195, 0, 0, 0),
-                          size: 28,
-                        ),
-                        onPressed: () {
-                          navigateToCartPage();
-                        },
-             ),
+                        size: 28,
+                      ),
+                      onPressed: () {
+                        navigateToCartPage();
+                      },
+           ),
+                  )),
           ],
         )
       ]),

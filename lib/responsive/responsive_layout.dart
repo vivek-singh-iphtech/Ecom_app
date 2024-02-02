@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Responsive extends StatelessWidget {
+class Responsive extends StatefulWidget {
 
   final Widget mobile;
  
@@ -15,19 +15,23 @@ class Responsive extends StatelessWidget {
   static bool isMobile(BuildContext context) => MediaQuery.of(context).size.width<650;  //mobile < 650
 
 
-  static bool isDesktop(BuildContext context) => MediaQuery.of(context).size.width>=1100; //Desktop >=1100
-  
+  static bool isDesktop(BuildContext context) => MediaQuery.of(context).size.width>=1100; 
+  @override
+  State<Responsive> createState() => _ResponsiveState();
+}
 
+class _ResponsiveState extends State<Responsive> {
+ //Desktop >=1100
   @override
   Widget build(BuildContext context){
     return LayoutBuilder(builder: (context, constraints) {
       if(constraints.maxWidth >= 1100)
       {
-         return desktop;
+         return widget.desktop;
       }
       else
       {
-        return mobile;
+        return widget.mobile;
       }
     },);
   }

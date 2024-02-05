@@ -17,9 +17,9 @@ class CategoryController {
         if(response.statusCode == 200)
         {
           List<dynamic> data = json.decode(response.body);
-
+          //  print(data);
           List<Categories> allCategoryList = data.map((category) => Categories.fromJson(category)).toList();
-        
+         
           return allCategoryList; 
         }
         else

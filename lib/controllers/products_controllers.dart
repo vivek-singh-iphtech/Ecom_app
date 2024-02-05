@@ -34,6 +34,8 @@ class ProductController {
     }
   }
 
+   
+
   Future<List<Products>?> fetchProductsByCategory({String? category}) async {
     try {
          final url = Uri.parse('${ApiConstants.baseURL}${ApiConstants.productsURL}${ApiConstants.categoryURL}/electronics');

@@ -19,7 +19,7 @@ class ProductByCategory extends StatefulWidget {
 class _ProductByCategoryState extends State<ProductByCategory> {
   final ProductController products = ProductController();
 
-  final CategoryController categoryController = CategoryController();
+  final CategoryController category = CategoryController();
 
   String selectedCategory = '';
 
@@ -28,54 +28,17 @@ class _ProductByCategoryState extends State<ProductByCategory> {
     super.initState();
     products.fetchProductsData();
     products.fetchProductsByCategory();
-    categoryController.fetchAllCategoriesData();
+    
   }
+
 
   @override
   Widget build(BuildContext context) {
+  print(category.fetchAllCategoriesData());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        FutureBuilder(
-          future: categoryController.fetchAllCategoriesData(),
-          builder: (context, AsyncSnapshot<List<Categories>?> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else {
-              List<Categories>? cat = snapshot.data;
-              print(cat);
-              return Container(
-                height: 50.0,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: cat?.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: EdgeInsets.all(10),
-                      margin: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: selectedCategory == cat?[index]
-                            ? Colors.blue
-                            : Colors.grey[300],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        cat![index].title,
-                        style: TextStyle(
-                          color: selectedCategory == cat[index]
-                              ? const Color.fromARGB(255, 0, 0, 0)
-                              : Colors.black,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              );
-            }
-          },
-        ),
+       
         FutureBuilder(
             future: products.fetchProductsData(),
             builder: (context, AsyncSnapshot<List<Products>?> snapshot) {

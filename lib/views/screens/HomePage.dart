@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:ecom_app/providers/cart_providers.dart';
 import 'package:ecom_app/providers/wishlist_providers.dart';
+import 'package:ecom_app/services/PushNotificationService.dart';
 import 'package:ecom_app/views/widgets/Homepage/carousel.dart';
 import 'package:ecom_app/views/widgets/Homepage/categories.dart';
 import 'package:ecom_app/views/widgets/Homepage/featured_products.dart';
@@ -17,16 +20,32 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  //  String notificationTitle = 'No Title';
+  // String notificationBody = 'No Body';
+  // String notificationData = 'No Data';
+
+ FCM notificationservices = FCM();
+
    @override
   void initState()
   {
+
     super.initState();
+    notificationservices.requestNotificartionPermissions();
+    notificationservices.FirebaseInit();
+    notificationservices.isTokenRefresh();
+    notificationservices.getDeviceToken().then((value) => print(value));
     Provider.of<WishList>(context,listen: false).getCartToPreferences();
     Provider.of<Cart>(context,listen: false).getCartToPreferences();
   }
 
+  //   _changeData(String msg) => setState(() => notificationData = msg);
+  // _changeBody(String msg) => setState(() => notificationBody = msg);
+  // _changeTitle(String msg) => setState(() => notificationTitle = msg);
+
   @override
   Widget build(BuildContext context) {
+     notificationservices.getDeviceToken().then((value) => print(value));
     return Scaffold(
       body: Responsive(mobile: _mobileHomePage(), desktop: _desktopHomePage()),
     );
@@ -62,6 +81,18 @@ class _HomePageState extends State<HomePage> {
      return  const SingleChildScrollView(
         child: Column(
           children: [
+            // Text(
+            //   notificationTitle,
+            //   style: Theme.of(context).textTheme.headline4,
+            // ),
+            // Text(
+            //   notificationBody,
+            //   style: Theme.of(context).textTheme.headline6,
+            // ),
+            // Text(
+            //   notificationData,
+            //   style: Theme.of(context).textTheme.headline6,
+            // ),
             Padding(
               padding: EdgeInsets.all(14.0),
               child: Carousel(),

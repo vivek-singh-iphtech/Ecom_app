@@ -1,6 +1,7 @@
 import 'package:ecom_app/providers/cart_providers.dart';
 import 'package:ecom_app/providers/wishlist_providers.dart';
 import 'package:ecom_app/responsive/responsive_layout.dart';
+import 'package:ecom_app/services/PushNotificationService.dart';
 import 'package:ecom_app/views/screens/CartPage.dart';
 import 'package:ecom_app/views/screens/HomePage.dart';
 import 'package:ecom_app/views/screens/wishListPage.dart';
@@ -9,9 +10,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'views/screens/ProductsPage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  await init();
   runApp(const MyApp());
+}
+
+Future init() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {

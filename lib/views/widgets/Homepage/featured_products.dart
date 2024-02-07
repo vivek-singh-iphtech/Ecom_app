@@ -2,11 +2,8 @@ import 'package:ecom_app/responsive/responsive_layout.dart';
 import 'package:ecom_app/views/shared/list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:ecom_app/controllers/products_controllers.dart';
 import 'package:ecom_app/models/products_models.dart';
-
 import '../ProductsDetail/product_details.dart';
 
 class FeaturedProducts extends StatefulWidget {

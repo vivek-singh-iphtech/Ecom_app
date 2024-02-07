@@ -7,10 +7,8 @@ import 'package:ecom_app/views/screens/wishListPage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'nav_item.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
-
 
 class MobileCommonScreen extends StatefulWidget {
   MobileCommonScreen({Key? key}) : super(key: key);
@@ -21,7 +19,7 @@ class MobileCommonScreen extends StatefulWidget {
 
 class _MobileCommonScreenState extends State<MobileCommonScreen> {
   final PageController _pageController = PageController();
- final String wishlist = 'wishlist';
+  final String wishlist = 'wishlist';
   int _currentIndex = 0;
 
   @override
@@ -32,7 +30,6 @@ class _MobileCommonScreenState extends State<MobileCommonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: _mobileNavBar(),
@@ -76,11 +73,6 @@ class _MobileCommonScreenState extends State<MobileCommonScreen> {
             size: 35,
             color: Color.fromARGB(255, 92, 119, 255),
           ),
-          Icon(
-            Icons.account_box,
-            size: 35,
-            color: Color.fromARGB(255, 92, 119, 255),
-          )
         ],
         onTap: (index) {
           _pageController.animateToPage(
@@ -92,45 +84,41 @@ class _MobileCommonScreenState extends State<MobileCommonScreen> {
       ),
     );
   }
-  
+
   _mobileNavBar() {
-     return Container(
+    return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text('ShopIt'),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            NavItem(title: wishlist, route: '',),
             const SizedBox(width: 8),
-             Consumer<Cart>(
-              builder: (context, cart, _) => badges.Badge(
-                    badgeContent: Text('${cart?.cartList.length}'),
-                    position: badges.BadgePosition.topEnd(top: -1, end: -1),
+            Consumer<Cart>(
+                builder: (context, cart, _) => badges.Badge(
+                      badgeContent: Text('${cart.cartList.length}'),
+                      position: badges.BadgePosition.topEnd(top: -1, end: -1),
                       badgeStyle: const badges.BadgeStyle(
-                        
                         badgeColor: Color.fromARGB(255, 255, 180, 180),
                       ),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.shopping_bag,
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.shopping_bag,
                           color: Color.fromARGB(195, 0, 0, 0),
-                        size: 28,
+                          size: 28,
+                        ),
+                        onPressed: () {
+                          navigateToCartPage();
+                        },
                       ),
-                      onPressed: () {
-                        navigateToCartPage();
-                      },
-           ),
-                  )),
+                    )),
           ],
         )
       ]),
-
-      
-
     );
   }
-  
+
   void navigateToCartPage() {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> const CartPage()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const CartPage()));
   }
 }

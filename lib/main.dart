@@ -1,8 +1,6 @@
 import 'package:ecom_app/providers/cart_providers.dart';
 import 'package:ecom_app/providers/wishlist_providers.dart';
 import 'package:ecom_app/responsive/responsive_layout.dart';
-import 'package:ecom_app/services/PushNotificationService.dart';
-import 'package:ecom_app/views/screens/CartPage.dart';
 import 'package:ecom_app/views/screens/HomePage.dart';
 import 'package:ecom_app/views/screens/wishListPage.dart';
 import 'package:ecom_app/views/shared/mobile_common_screen.dart';

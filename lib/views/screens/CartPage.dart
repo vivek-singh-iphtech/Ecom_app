@@ -1,7 +1,6 @@
 import 'package:ecom_app/models/products_models.dart';
 import 'package:ecom_app/providers/cart_providers.dart';
 import 'package:ecom_app/responsive/responsive_layout.dart';
-import 'package:ecom_app/views/shared/common_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,14 +14,12 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-
-
   @override
-  void initState()
-  {
+  void initState() {
     super.initState();
-    Provider.of<Cart>(context,listen: false).getCartToPreferences();
+    Provider.of<Cart>(context, listen: false).getCartToPreferences();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,70 +30,63 @@ class _CartPageState extends State<CartPage> {
         ),
         centerTitle: true,
         automaticallyImplyLeading: true,
-       
       ),
-      bottomNavigationBar:  ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(50), topRight: Radius.circular(50)),
-          child: Consumer<Cart>(
-            builder: (context, cart, _) => BottomAppBar(
-              color: Color.fromARGB(255, 92, 119, 255),
-              height: 80.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                     Padding(
-                       padding: const EdgeInsets.only(left: 20.0),
-                       child: Text(
-                              'Total: \$${cart.calculateTotalPrice().toStringAsFixed(2) ?? '0.00'}',
-                              style: const TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 255, 255, 255), // Customize the color of the price
-                              ),
-                            ),
-                     ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: Container(
-                      height: 33.0,
-                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                    
-                                          color: Color.fromARGB(255, 255, 255, 255),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.grey.withOpacity(
-                                                  0.5), // Shadow color
-                                              spreadRadius: 2,
-                                              blurRadius: 5,
-                                              offset:
-                                                  Offset(0, 3), // Shadow offset
-                                            ),
-                                          ],
-                                        ),
-                      child: TextButton(
-                      
-                        child: const Center(
-                          child: Text(
-                            'Check out',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 0, 0, 0),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                         
-                        },
-                      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+        child: Consumer<Cart>(
+          builder: (context, cart, _) => BottomAppBar(
+            color: Color.fromARGB(255, 92, 119, 255),
+            height: 80.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    'Total: \$${cart.calculateTotalPrice().toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255,
+                          255), // Customize the color of the price
                     ),
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: Container(
+                    height: 33.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5), // Shadow color
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // Shadow offset
+                        ),
+                      ],
+                    ),
+                    child: TextButton(
+                      child: const Center(
+                        child: Text(
+                          'Check out',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
+      ),
       body: Responsive(mobile: _mobileCartPage(), desktop: _desktopCartPage()),
     );
   }
@@ -133,7 +123,7 @@ class _CartPageState extends State<CartPage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 15.0),
                                 child: CachedNetworkImage(
-                                  imageUrl: product!.image!,
+                                  imageUrl: product!.image,
                                   height: 80,
                                   width: 80,
                                 ),
@@ -148,20 +138,21 @@ class _CartPageState extends State<CartPage> {
                                     Container(
                                       width: 80.0,
                                       child: Text(
-                                        _truncateTitle(
-                                            product?.title ?? 'test1', 2),
+                                        _truncateTitle(product.title, 2),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 92, 119, 255),
+                                          color:
+                                              Color.fromARGB(255, 92, 119, 255),
                                           fontSize: 18,
                                         ),
                                       ),
                                     ),
                                     Text(
-                                      '\$${(product?.price ?? 0) * (product?.quantity ?? 0)}',
+                                      '\$${(product.price) * (product.quantity)}',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(255, 92, 119, 255),
+                                        color:
+                                            Color.fromARGB(255, 92, 119, 255),
                                         fontSize: 16,
                                       ),
                                     ),
@@ -170,165 +161,179 @@ class _CartPageState extends State<CartPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
-                                child: kIsWeb?Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
+                                child: kIsWeb
+                                    ? Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
 
-                                        color: Colors.white, // Background color
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(
-                                                0.5), // Shadow color
-                                            spreadRadius: 2,
-                                            blurRadius: 5,
-                                            offset:
-                                                Offset(0, 3), // Shadow offset
+                                              color: Colors
+                                                  .white, // Background color
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius: 2,
+                                                  blurRadius: 5,
+                                                  offset: Offset(
+                                                      0, 3), // Shadow offset
+                                                ),
+                                              ],
+                                            ),
+                                            child: IconButton(
+                                              iconSize: 16.0,
+                                              icon: Icon(Icons.remove),
+                                              onPressed: () {
+                                                if (product.quantity > 1) {
+                                                  Provider.of<Cart>(context,
+                                                          listen: false)
+                                                      .decrementQuantity(
+                                                          product);
+                                                }
+                                              },
+                                              color: Colors.black, // Icon color
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 8.0,
+                                          ),
+                                          Text(
+                                            '${product.quantity}',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 8.0,
+                                          ),
+                                          Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                              color: const Color.fromARGB(
+                                                  255,
+                                                  171,
+                                                  213,
+                                                  237), // Background color
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius: 2,
+                                                  blurRadius: 5,
+                                                  offset: Offset(
+                                                      0, 3), // Shadow offset
+                                                ),
+                                              ],
+                                            ),
+                                            child: IconButton(
+                                              iconSize: 16.0,
+                                              icon: Icon(Icons.add),
+                                              onPressed: () {
+                                                Provider.of<Cart>(context,
+                                                        listen: false)
+                                                    .incrementQuantity(product);
+                                              },
+                                            ),
                                           ),
                                         ],
-                                      ),
-                                      child: IconButton(
-                                        iconSize: 16.0,
-                                        icon: Icon(Icons.remove),
-                                        onPressed: () {
-                                          if (product.quantity > 1) {
-                                            Provider.of<Cart>(context,
-                                                    listen: false)
-                                                .decrementQuantity(product);
-                                           
-                                          }
-                                        },
-                                        color: Colors.black, // Icon color
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 8.0,
-                                    ),
-                                    Text(
-                                      '${product.quantity}',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 8.0,
-                                    ),
-                                    Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        color: const Color.fromARGB(255, 171,
-                                            213, 237), // Background color
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(
-                                                0.5), // Shadow color
-                                            spreadRadius: 2,
-                                            blurRadius: 5,
-                                            offset:
-                                                Offset(0, 3), // Shadow offset
-                                          ),
-                                        ],
-                                      ),
-                                      child: IconButton(
-                                        iconSize: 16.0,
-                                        icon: Icon(Icons.add),
-                                        onPressed: () {
-                                          Provider.of<Cart>(context,
-                                                  listen: false)
-                                              .incrementQuantity(product);
-                                              
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ): Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
+                                      )
+                                    : Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
 
-                                        color: Colors.white, // Background color
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(
-                                                0.5), // Shadow color
-                                            spreadRadius: 2,
-                                            blurRadius: 5,
-                                            offset:
-                                                Offset(0, 3), // Shadow offset
+                                              color: Colors
+                                                  .white, // Background color
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius: 2,
+                                                  blurRadius: 5,
+                                                  offset: Offset(
+                                                      0, 3), // Shadow offset
+                                                ),
+                                              ],
+                                            ),
+                                            child: IconButton(
+                                              iconSize: 16.0,
+                                              icon: Icon(Icons.remove),
+                                              onPressed: () {
+                                                if (product.quantity > 1) {
+                                                  Provider.of<Cart>(context,
+                                                          listen: false)
+                                                      .decrementQuantity(
+                                                          product);
+                                                }
+                                              },
+                                              color: Colors.black, // Icon color
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 8.0,
+                                          ),
+                                          Text(
+                                            '${product.quantity}',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 8.0,
+                                          ),
+                                          Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                              color: const Color.fromARGB(
+                                                  255,
+                                                  171,
+                                                  213,
+                                                  237), // Background color
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(
+                                                          0.5), // Shadow color
+                                                  spreadRadius: 2,
+                                                  blurRadius: 5,
+                                                  offset: Offset(
+                                                      0, 3), // Shadow offset
+                                                ),
+                                              ],
+                                            ),
+                                            child: IconButton(
+                                              iconSize: 16.0,
+                                              icon: Icon(Icons.add),
+                                              onPressed: () {
+                                                Provider.of<Cart>(context,
+                                                        listen: false)
+                                                    .incrementQuantity(product);
+                                              },
+                                            ),
                                           ),
                                         ],
                                       ),
-                                      child: IconButton(
-                                        iconSize: 16.0,
-                                        icon: Icon(Icons.remove),
-                                        onPressed: () {
-                                          if (product.quantity > 1) {
-                                            Provider.of<Cart>(context,
-                                                    listen: false)
-                                                .decrementQuantity(product);
-                                          }
-                                        },
-                                        color: Colors.black, // Icon color
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 8.0,
-                                    ),
-                                    Text(
-                                      '${product.quantity}',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 8.0,
-                                    ),
-                                    Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        color: const Color.fromARGB(255, 171,
-                                            213, 237), // Background color
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(
-                                                0.5), // Shadow color
-                                            spreadRadius: 2,
-                                            blurRadius: 5,
-                                            offset:
-                                                Offset(0, 3), // Shadow offset
-                                          ),
-                                        ],
-                                      ),
-                                      child: IconButton(
-                                        iconSize: 16.0,
-                                        icon: Icon(Icons.add),
-                                        onPressed: () {
-                                          Provider.of<Cart>(context,
-                                                  listen: false)
-                                              .incrementQuantity(product);
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
@@ -382,5 +387,4 @@ class _CartPageState extends State<CartPage> {
       return titleWords.sublist(0, words).join(' ');
     }
   }
-  
 }

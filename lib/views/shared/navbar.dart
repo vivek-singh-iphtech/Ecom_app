@@ -19,8 +19,6 @@ class _NavbarState extends State<Navbar> {
   final String Products = 'Products';
   final String wishlist = 'wishlist';
 
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Responsive(mobile: _mobileNavBar(), desktop: _desktopNavBar());
@@ -80,7 +78,7 @@ class _NavbarState extends State<Navbar> {
             const SizedBox(width: 8),
             Consumer<Cart>(
                 builder: (context, cart, _) => badges.Badge(
-                      badgeContent: Text('${cart?.cartList.length}'),
+                      badgeContent: Text('${cart.cartList.length}'),
                       position: badges.BadgePosition.topEnd(top: -1, end: -1),
                       badgeStyle: const badges.BadgeStyle(
                         badgeColor: Color.fromARGB(255, 255, 180, 180),

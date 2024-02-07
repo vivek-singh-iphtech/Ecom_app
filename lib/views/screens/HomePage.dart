@@ -4,7 +4,6 @@ import 'package:ecom_app/providers/cart_providers.dart';
 import 'package:ecom_app/providers/wishlist_providers.dart';
 import 'package:ecom_app/services/PushNotificationService.dart';
 import 'package:ecom_app/views/widgets/Homepage/carousel.dart';
-import 'package:ecom_app/views/widgets/Homepage/categories.dart';
 import 'package:ecom_app/views/widgets/Homepage/featured_products.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -61,10 +60,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(14.0),
               child: Carousel(),
             ),
-             Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Categories(),
-            ),
+            
             Padding(
               padding: EdgeInsets.all(14.0),
               child: FeaturedProducts(),
@@ -81,26 +77,12 @@ class _HomePageState extends State<HomePage> {
      return  const SingleChildScrollView(
         child: Column(
           children: [
-            // Text(
-            //   notificationTitle,
-            //   style: Theme.of(context).textTheme.headline4,
-            // ),
-            // Text(
-            //   notificationBody,
-            //   style: Theme.of(context).textTheme.headline6,
-            // ),
-            // Text(
-            //   notificationData,
-            //   style: Theme.of(context).textTheme.headline6,
-            // ),
+          
             Padding(
               padding: EdgeInsets.all(14.0),
               child: Carousel(),
             ),
-             Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Categories(),
-            ),
+         
             Padding(
               padding: EdgeInsets.all(14.0),
               child: FeaturedProducts(),

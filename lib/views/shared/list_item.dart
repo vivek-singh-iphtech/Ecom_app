@@ -4,7 +4,6 @@ import 'package:ecom_app/providers/wishlist_providers.dart';
 import 'package:ecom_app/responsive/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart';
 
 class ListItem extends StatelessWidget {
   final Products? product;
@@ -18,7 +17,7 @@ class ListItem extends StatelessWidget {
           child: Column(children: [
             CachedNetworkImage(
               alignment: Alignment.center,
-              imageUrl: product!.image!,
+              imageUrl: product!.image,
               height: Responsive.isMobile(context) ? 130 : 200,
             ),
 
@@ -40,13 +39,14 @@ class ListItem extends StatelessWidget {
               'Price: \$${product?.price.toStringAsFixed(2) ?? '0.00'}',
               style: const TextStyle(
                 fontSize: 12,
-                color: Colors.green, // Customize the color of the price
+                color: Color.fromARGB(
+                    255, 92, 119, 255), // Customize the color of the price
               ),
             ),
 
             SizedBox(height: 4),
             Text(
-              'Rating: ${product?.rating?.rate ?? 0.0} (${product?.rating?.count ?? 0} reviews)',
+              'Rating: ${product?.rating.rate ?? 0.0} (${product?.rating.count ?? 0} reviews)',
               style: const TextStyle(
                 fontSize: 10,
                 color: Colors.grey, // Customize the color of the rating
@@ -63,7 +63,7 @@ class ListItem extends StatelessWidget {
                 wishList.isFav(product?.id)
                     ? Icons.favorite
                     : Icons.favorite_border,
-                color: Color.fromARGB(195, 255, 0, 0),
+                color: Color.fromARGB(255, 255, 180, 180),
                 size: 20,
               ),
               onPressed: () {

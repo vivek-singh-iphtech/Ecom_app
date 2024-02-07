@@ -1,11 +1,7 @@
-import 'package:ecom_app/controllers/category_controllers.dart';
-import 'package:ecom_app/models/categories_models.dart';
 import 'package:ecom_app/models/products_models.dart';
 import 'package:ecom_app/responsive/responsive_layout.dart';
 import 'package:ecom_app/views/shared/list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 import '../../../controllers/products_controllers.dart';
 import '../ProductsDetail/product_details.dart';
 
@@ -19,26 +15,18 @@ class ProductByCategory extends StatefulWidget {
 class _ProductByCategoryState extends State<ProductByCategory> {
   final ProductController products = ProductController();
 
-  final CategoryController category = CategoryController();
-
-  String selectedCategory = '';
-
   @override
   void initState() {
     super.initState();
     products.fetchProductsData();
     products.fetchProductsByCategory();
-    
   }
-
 
   @override
   Widget build(BuildContext context) {
-  print(category.fetchAllCategoriesData());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-       
         FutureBuilder(
             future: products.fetchProductsData(),
             builder: (context, AsyncSnapshot<List<Products>?> snapshot) {
@@ -46,7 +34,7 @@ class _ProductByCategoryState extends State<ProductByCategory> {
                 return const CircularProgressIndicator();
               } else {
                 List<Products>? prod = snapshot.data;
-                
+
                 return LayoutBuilder(builder: (context, Constraints) {
                   return SizedBox(
                     height: MediaQuery.of(context).size.height,
@@ -87,4 +75,3 @@ class _ProductByCategoryState extends State<ProductByCategory> {
 //   );
 // }
 }
-

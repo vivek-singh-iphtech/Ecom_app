@@ -1,10 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:math';
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class FCM {
@@ -73,13 +69,13 @@ class FCM {
       android: androidNotificationDetails,
     );
 
-    Future.delayed(
-        Duration.zero,(){
-        _flutterLocalNotificationsPlugin.show(
-            0,
-            message.notification!.title.toString(),
-            message.notification!.body.toString(),
-            notificationDetails);});
+    Future.delayed(Duration.zero, () {
+      _flutterLocalNotificationsPlugin.show(
+          0,
+          message.notification!.title.toString(),
+          message.notification!.body.toString(),
+          notificationDetails);
+    });
   }
 
 //generate device token

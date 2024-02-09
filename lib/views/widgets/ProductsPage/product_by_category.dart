@@ -30,9 +30,7 @@ class _ProductByCategoryState extends State<ProductByCategory> {
         FutureBuilder(
             future: products.fetchProductsData(),
             builder: (context, AsyncSnapshot<List<Products>?> snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              } else {
+             
                 List<Products>? prod = snapshot.data;
 
                 return LayoutBuilder(builder: (context, Constraints) {
@@ -63,7 +61,7 @@ class _ProductByCategoryState extends State<ProductByCategory> {
                   );
                 });
               }
-            }),
+            ),
       ],
     );
   }
